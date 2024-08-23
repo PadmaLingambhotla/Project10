@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         AZURE_CREDENTIALS_ID = 'a06dc198-2b36-4a2f-82d0-e45fbce24d35'
-        // Optional: You can define AZ_PATH if you need to use it for other commands or tasks.
+        TERRAFORM_PATH = 'D:\\Software\\terraform_1.9.4_windows_amd64'
+        // Optional: You can define AZ_PATH if needed for other commands or tasks.
         // AZ_PATH = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
     }
 
@@ -23,13 +24,17 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                bat 'terraform init'
+                withEnv(["PATH+TERRAFORM=${TERRAFORM_PATH}"]) {
+                    bat 'terraform init'
+                }
             }
         }
 
         stage('Terraform Validate') {
             steps {
-                bat 'terraform validate'
+                withEnv(["PATH+TERRAFORM=${TERRAFORM_PATH}"]) {
+                    bat 'terraform validate'
+                }
             }
         }
     }
