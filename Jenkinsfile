@@ -20,7 +20,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/PadmaLingambhotla/my-infra-project.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/PadmaLingambhotla/Project10.git']]])
             }
         }
 
