@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         AZURE_CREDENTIALS_ID = 'a06dc198-2b36-4a2f-82d0-e45fbce24d35' 
+        // Optional: You can define AZ_PATH if you need to use it for other commands or tasks.
+        // AZ_PATH = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
     }
 
     stages {
@@ -12,7 +14,6 @@ pipeline {
                 }
             }
         }
-    
     
         stage('Checkout') {
             steps {
