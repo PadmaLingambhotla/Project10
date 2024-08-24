@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "${PATH};D:\\Software\\terraform_1.9.4_windows_amd64" // Update this with your actual Terraform installation path
+    }
     parameters {
         string(name: 'environment', defaultValue: 'dev', description: 'Environment to deploy to (dev, staging, prod)')
     }
