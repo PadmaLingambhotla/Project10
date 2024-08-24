@@ -41,7 +41,8 @@ resource "azurerm_policy_definition" "custom_policy" {
 resource "azurerm_subscription_policy_assignment" "custom_policy_assignment" {
   name                 = "customPolicyAssignment5"
   policy_definition_id = azurerm_policy_definition.custom_policy.id
-  subscription_id      = var.subscription_id
+  subscription_id      = "/subscriptions/${var.subscription_id}"                                                     
+  # var.subscription_id
 }
 
 # Role Assignment with Dependency
