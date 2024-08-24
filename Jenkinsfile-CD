@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'environment', defaultValue: 'dev', description: 'Environment to deploy to (dev, staging, prod)')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/PadmaLingambhotla/Project10.git'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    bat 'terraform init'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    bat """
+                    terraform apply -var-file="terraform.tfvars" -auto-approve
+                    """
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
